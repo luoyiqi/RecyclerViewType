@@ -4,7 +4,7 @@ CommonAdapter 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，�
 
 ## 截图
 
-![截图](art/screeshot.png)
+![截图](art/screenshot.png)
 
 ## 主要原理
 
