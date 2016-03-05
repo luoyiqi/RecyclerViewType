@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RecyclerViewType</string>
+    <string-array name="mock_title">
+        <item>为什么Android要采用Binder作为IPC机制？</item>
+        <item>为什么九城公司在失去魔兽世界后，这几年江河日下、日暮西山？</item>
+        <item>为什么美本的同学 GPA 都超级高？</item>
+        <item>《你是一桩独一无二的生意》新书试读招募！</item>
+    </string-array>
+    <string-array name="mock_content">
+        <item>先列举Linux现有的进程间IPC方式有：1. 管道：在创建时分配一个page大小的内存，缓存区大小比较有限；2. 消息队列：信息复制两次，额外的CPU消耗；不合适频繁或信息量大的通信；3. 共享内存：无须复制，共享缓冲区直接付附加到进程虚拟地址空间，速度快；但…</item>
+        <item>元月2日更新当时网易都签约了，新闻出版署和广电总局神仙打架，网易硬开着测试服的名义不收钱给玩，而且记得暴雪把九城的玩家数据都复制过来了。当时有部很有名的片子《看你妹之网瘾战争》可以去看看，那时老玩家真心是看哭的。话说，不是对九城怨念这么大… </item>
+        <item>我把自己在某答案下的回复整理出来算是劝架的话——当然也可能是双方都不爱听的。这个问题已经跑偏了，几组统计数据几张图就能说个大略的问题已然成为了不同立场/身份的留学生之间的撕逼，而撕逼的基本内容在我将近十年前来美国读本科的时候就耳熟能详——…</item>
+        <item>对于一个对审计和会计发表专业言论总要瞻前顾后的执业会计师来说，职场经验成为我在知乎最为钟情的一亩三分地。同80后的绝大多数同龄人一样，我是家中第一个进入外企环境工作的人；从北京再到腐国，一直在品尝着很多同学朋友也正在经历的漂泊异乡的酸甜苦辣… </item>
+    </string-array>
+    <string-array name="mock_img_desc">
+        <item>前进！梅丽号</item>
+        <item>草帽海贼团</item>
+        <item>GitHub</item>
+        <item>Saber</item>
+    </string-array>
+</resources>
