@@ -4,7 +4,10 @@ CommonAdapter 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，�
 
 ## 截图
 
-![截图](art/screenshot.png)
+<p align="center">
+  <img src="art/screenshot.png" alt="截图" width="256px">
+</p>
+
 
 ## 主要原理
 
@@ -43,44 +46,45 @@ MultiTypeAdapter adapter = new MultiTypeAdapter(this, new ViewTypeMapper() {
 recyclerView.setAdapter(adapter);
 ```
 
-Holder：
+定义两个ViewHolder，继承 CommonHolder，其中的泛型应该为实现了 ViewTypeItem 接口的实体类型：
 
-1. Article.java
+1. ArticleHolder.java
 
-```java
-@LayoutId(R.layout.item_article)
-public class ArticleHolder extends CommonHolder<Article> {
-
-    @ViewId(R.id.textTitle) public   TextView textTitle;
-    @ViewId(R.id.textContent) public TextView textContent;
-
-    public ArticleHolder(View itemView) {
-        super(itemView);
+    ```java
+    @LayoutId(R.layout.item_article)
+    public class ArticleHolder extends CommonHolder<Article> {
+    
+        @ViewId(R.id.textTitle) public   TextView textTitle;
+        @ViewId(R.id.textContent) public TextView textContent;
+    
+        public ArticleHolder(View itemView) {
+            super(itemView);
+        }
+    
+        @Override public void bindData(Article article) {
+            textTitle.setText(article.title);
+            textContent.setText(article.content);
+        }
     }
-
-    @Override public void bindData(Article article) {
-        textTitle.setText(article.title);
-        textContent.setText(article.content);
-    }
-}
-```
+    ```
 
 2. PhotoHolder.java
-```Java
-@LayoutId(R.layout.item_photo)
-public class PhotoHolder extends CommonHolder<Photo> {
 
-    @ViewId(R.id.imagePicture) ImageView imagePicture;
-    @ViewId(R.id.textDesc)     TextView  textDesc;
-
-    public PhotoHolder(View itemView) {
-        super(itemView);
+    ```Java
+    @LayoutId(R.layout.item_photo)
+    public class PhotoHolder extends CommonHolder<Photo> {
+    
+        @ViewId(R.id.imagePicture) ImageView imagePicture;
+        @ViewId(R.id.textDesc)     TextView  textDesc;
+    
+        public PhotoHolder(View itemView) {
+            super(itemView);
+        }
+    
+        @Override public void bindData(Photo photo) {
+            Context context = getItemView().getContext();
+            imagePicture.setImageDrawable(ContextCompat.getDrawable(context, photo.photoId));
+            textDesc.setText(photo.description);
+        }
     }
-
-    @Override public void bindData(Photo photo) {
-        Context context = getItemView().getContext();
-        imagePicture.setImageDrawable(ContextCompat.getDrawable(context, photo.photoId));
-        textDesc.setText(photo.description);
-    }
-}
-```
+    ```
