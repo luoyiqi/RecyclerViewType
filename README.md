@@ -27,7 +27,7 @@ CommonAdapter 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，�
 
 这里写了一个小例子，在一个 RecyclerView 中，有两种类型的数据，它们分别是文章（Article）和（照片）。它们分别使用不同的布局并且定了不同的 ViewHolder（这里继承的是 CommonHolder）
 
-核心代码：
+## 核心代码
 
 ```Java
 RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -36,7 +36,7 @@ recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.
 MultiTypeAdapter adapter = new MultiTypeAdapter(this, new ViewTypeMapper() {
     @Override
     public Class<? extends CommonHolder<? extends ViewTypeItem>> getViewType(ViewTypeItem item, int position) {
-        // 设定从实体类型到 Holder 类型的映射
+        // 指定哪个数据对应哪个 ViewHolder
         if (item instanceof Article) return ArticleHolder.class;
         if (item instanceof Photo) return PhotoHolder.class;
         return null;
@@ -46,7 +46,7 @@ MultiTypeAdapter adapter = new MultiTypeAdapter(this, new ViewTypeMapper() {
 recyclerView.setAdapter(adapter);
 ```
 
-定义两个ViewHolder，继承 CommonHolder，其中的泛型应该为实现了 ViewTypeItem 接口的实体类型：
+定义两个ViewHolder，继承 CommonHolder，其中的泛型应该为实现了 ViewTypeItem 接口的实体类型，比如这里的 Article 和 Photo：
 
 1. ArticleHolder.java
 
