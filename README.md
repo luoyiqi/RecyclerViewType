@@ -2,6 +2,10 @@
 
 CommonAdapter 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，这里演示使用它借助 viewType 实现 RecyclerView 的多种布局。
 
+## 截图
+
+![截图](art/screeshot.png)
+
 ## 主要原理
 
 直接使用 RecyclerView 来实现 ViewType 时，需要做这样几件事：
@@ -15,6 +19,8 @@ CommonAdapter 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，�
 
 1. 定义 N 中 ViewHolder（继承 CommonHolder<ViewTypeItem>）
 2. 实现 ViewTypeMapper 接口（从 Item 或者 position 到 holder 的映射）
+
+实现原理其实是使用了 viewHolder 的 class 对象的 hashCode 当做了 viewType，因为这样完全满足 ViewType 使用时的要求，又减少了多余的定义。
 
 这里写了一个小例子，在一个 RecyclerView 中，有两种类型的数据，它们分别是文章（Article）和（照片）。它们分别使用不同的布局并且定了不同的 ViewHolder（这里继承的是 CommonHolder）
 
