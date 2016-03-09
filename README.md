@@ -1,6 +1,6 @@
 # RecyclerViewType
 
-CommonAdapter 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，这里演示使用它借助 viewType 实现 RecyclerView 的多种布局。
+[CommonAdapter](https://github.com/twiceyuan/CommonAdapter) 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，这里演示使用它借助 viewType 实现 RecyclerView 的多种布局。
 
 ## 截图
 
