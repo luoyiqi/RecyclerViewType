@@ -33,15 +33,10 @@
 RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-MultiTypeAdapter adapter = new MultiTypeAdapter(this, new ViewTypeMapper() {
-    @Override
-    public Class<? extends CommonHolder<? extends ViewTypeItem>> getViewType(ViewTypeItem item, int position) {
-        // 指定哪个数据对应哪个 ViewHolder
-        if (item instanceof Article) return ArticleHolder.class;
-        if (item instanceof Photo) return PhotoHolder.class;
-        return null;
-    }
-});
+MultiTypeAdapter adapter = new MultiTypeAdapter(this);
+
+adapter.registerViewType(Photo.class, PhotoHolder.class);
+adapter.registerViewType(Article.class, ArticleHolder.class);
 
 recyclerView.setAdapter(adapter);
 ```

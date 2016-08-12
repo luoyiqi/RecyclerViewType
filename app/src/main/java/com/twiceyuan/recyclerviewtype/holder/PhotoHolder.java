@@ -23,10 +23,6 @@ public class PhotoHolder extends CommonHolder<Photo> {
     @ViewId(R.id.imagePicture) ImageView imagePicture;
     @ViewId(R.id.textDesc)     TextView  textDesc;
 
-    public PhotoHolder(View itemView) {
-        super(itemView);
-    }
-
     @Override public void bindData(Photo photo) {
         Context context = getItemView().getContext();
         imagePicture.setImageDrawable(ContextCompat.getDrawable(context, photo.photoId));

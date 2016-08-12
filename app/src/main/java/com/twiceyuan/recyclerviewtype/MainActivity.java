@@ -6,9 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
-import com.twiceyuan.commonadapter.library.adapter.ViewTypeItem;
-import com.twiceyuan.commonadapter.library.adapter.ViewTypeMapper;
-import com.twiceyuan.commonadapter.library.holder.CommonHolder;
 import com.twiceyuan.recyclerviewtype.holder.ArticleHolder;
 import com.twiceyuan.recyclerviewtype.holder.PhotoHolder;
 import com.twiceyuan.recyclerviewtype.model.Article;
@@ -27,14 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        MultiTypeAdapter adapter = new MultiTypeAdapter(this, new ViewTypeMapper() {
-            @Override
-            public Class<? extends CommonHolder<? extends ViewTypeItem>> getViewType(ViewTypeItem item, int position) {
-                if (item instanceof Article) return ArticleHolder.class;
-                if (item instanceof Photo) return PhotoHolder.class;
-                return null;
-            }
-        });
+        MultiTypeAdapter adapter = new MultiTypeAdapter(this);
+
+        // 注册两种 ViewType，对应两种数据类型（必须在设置到 RecyclerView 上之前注册！）
+        adapter.registerViewType(Photo.class, PhotoHolder.class);
+        adapter.registerViewType(Article.class, ArticleHolder.class);
 
         recyclerView.setAdapter(adapter);
 
