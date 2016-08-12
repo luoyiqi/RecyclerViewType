@@ -1,13 +1,8 @@
 # RecyclerViewType
 
+> 本项目只是 CommonAdapter 项目的一个功能的 demo，具体实现请移步项目 https://github.com/twiceyuan/CommonAdapter : )
+
 [CommonAdapter](https://github.com/twiceyuan/CommonAdapter) 在 0.4 版本中加入了 RecyclerView 里 viewType 的支持，这里演示使用它借助 viewType 实现 RecyclerView 的多种布局。
-
-## 截图
-
-<p align="center">
-  <img src="art/screenshot.png" alt="截图" width="256px">
-</p>
-
 
 ## 如何使用？
 
@@ -49,6 +44,12 @@ recyclerView.setAdapter(adapter);
         }
     }
     ```
+
+## 截图
+
+<p align="center">
+  <img src="art/screenshot.png" alt="截图" width="256px">
+</p>
 
 ## 主要原理
 
