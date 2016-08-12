@@ -9,6 +9,47 @@
 </p>
 
 
+## 如何使用？
+
+```Java
+// 定义
+MultiTypeAdapter adapter = new MultiTypeAdapter(this);
+
+// 注册 ViewType 类型（哪种数据使用哪种 ViewHolder）
+adapter.registerViewType(Article.class, ArticleHolder.class);
+adapter.registerViewType(Photo.class, PhotoHolder.class);
+
+// 使用
+recyclerView.setAdapter(adapter);
+```
+
+其中 ViewHolder 和 数据类型的定义方式：
+
+1. 定义数据实体类 Article.java 
+
+    ```java
+    public class Article implement ViewTypeItem {
+       public String title;
+       public String content;
+    }
+    ```
+
+2. 定义 ViewHolder 类 ArticleHolder.java
+
+    ```java
+    @LayoutId(R.layout.item_article)
+    public class ArticleHolder extends CommonHolder<Article> {
+
+        @ViewId(R.id.textTitle) public   TextView textTitle;
+        @ViewId(R.id.textContent) public TextView textContent;
+        
+        @Override public void bindData(Article article) {
+            textTitle.setText(article.title);
+            textContent.setText(article.content);
+        }
+    }
+    ```
+
 ## 主要原理
 
 直接使用 RecyclerView 来实现 ViewType 时，需要做这样几件事：
@@ -26,60 +67,3 @@
 实现原理其实是使用了 viewHolder 的 class 对象的 hashCode 当做了 viewType，因为这样完全满足 ViewType 使用时的要求，又减少了多余的定义。
 
 这里写了一个小例子，在一个 RecyclerView 中，有两种类型的数据，它们分别是文章（Article）和（照片）。它们分别使用不同的布局并且定了不同的 ViewHolder（这里继承的是 CommonHolder）
-
-## 核心代码
-
-```Java
-RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-MultiTypeAdapter adapter = new MultiTypeAdapter(this);
-
-adapter.registerViewType(Photo.class, PhotoHolder.class);
-adapter.registerViewType(Article.class, ArticleHolder.class);
-
-recyclerView.setAdapter(adapter);
-```
-
-定义两个ViewHolder，继承 CommonHolder，其中的泛型应该为实现了 ViewTypeItem 接口的实体类型，比如这里的 Article 和 Photo：
-
-1. ArticleHolder.java
-
-    ```java
-    @LayoutId(R.layout.item_article)
-    public class ArticleHolder extends CommonHolder<Article> {
-
-        @ViewId(R.id.textTitle) public   TextView textTitle;
-        @ViewId(R.id.textContent) public TextView textContent;
-
-        public ArticleHolder(View itemView) {
-            super(itemView);
-        }
-
-        @Override public void bindData(Article article) {
-            textTitle.setText(article.title);
-            textContent.setText(article.content);
-        }
-    }
-    ```
-
-2. PhotoHolder.java
-
-    ```Java
-    @LayoutId(R.layout.item_photo)
-    public class PhotoHolder extends CommonHolder<Photo> {
-
-        @ViewId(R.id.imagePicture) ImageView imagePicture;
-        @ViewId(R.id.textDesc)     TextView  textDesc;
-
-        public PhotoHolder(View itemView) {
-            super(itemView);
-        }
-
-        @Override public void bindData(Photo photo) {
-            Context context = getItemView().getContext();
-            imagePicture.setImageDrawable(ContextCompat.getDrawable(context, photo.photoId));
-            textDesc.setText(photo.description);
-        }
-    }
-    ```
