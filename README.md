@@ -62,7 +62,7 @@ recyclerView.setAdapter(adapter);
 
 在 CommonAdapter 中，对这个逻辑进行了简化，因为 viewType 的最终目的就是完成从实体或者位置到 Holder 的映射，所以在 CommonAdapter 中只需要做两件事：
 
-1. 定义 N 中 ViewHolder（继承 CommonHolder<ViewTypeItem>）
+1. 定义 N 种 ViewHolder（继承 CommonHolder<ViewTypeItem>）
 2. 实现 ViewTypeMapper 接口（从 Item 或者 position 到 holder 的映射）
 
 实现原理其实是使用了 viewHolder 的 class 对象的 hashCode 当做了 viewType，因为这样完全满足 ViewType 使用时的要求，又减少了多余的定义。
